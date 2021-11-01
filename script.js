@@ -2,6 +2,7 @@
 
 let secretNumber = document.querySelector('.number').value = Math.trunc(Math.random()*20) +1;
 let actualScore = document.querySelector('.score').textContent;
+let highscore = 0;
 
 //CHECK BUTTON LOGIC
 document.querySelector('.check').addEventListener('click', function() {
@@ -17,7 +18,10 @@ document.querySelector('.check').addEventListener('click', function() {
         document.querySelector('body').style.backgroundColor = '#60b347';
         document.querySelector('.number').style.width = '30rem';
         document.querySelector('.number').textContent = secretNumber;
-
+        if(actualScore > highscore){
+            highscore = actualScore;
+            document.querySelector('.highscore').innerHTML = actualScore;
+        }
     //not correct - too high
     } else if(actualScore > 1 && guessNumber > secretNumber){
         document.querySelector('.message').textContent = 'Too high!';
@@ -50,4 +54,5 @@ againBtn.addEventListener('click', function() {
     actualScore = 20;
     document.querySelector('.score').textContent = actualScore;
     document.querySelector('.guess').value = ' ';
+    secretNumber = document.querySelector('.number').value = Math.trunc(Math.random()*20) +1;
 });
